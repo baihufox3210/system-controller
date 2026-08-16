@@ -10,9 +10,10 @@ class Bot(commands.Bot):
         )
         
     async def setup_hook(self):
-        pass
+        await self.load_extensions()
+        await self.tree.sync()
     
-    async def load_extensions(slef):
+    async def load_extensions(self):
         for root, _, files in os.walk("./cogs"):
             for file in files:
                 if file.endswith(".py"):
