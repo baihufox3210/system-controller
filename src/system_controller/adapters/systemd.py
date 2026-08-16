@@ -33,7 +33,9 @@ class SystemdAdapter:
             )
         
         except asyncio.TimeoutError:
-            pass
+            return CommandResult(
+                code=-1, stdout="", stderr="Command timed out."
+            )
         
         except OSError as e:
             return CommandResult(
