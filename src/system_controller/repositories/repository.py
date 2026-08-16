@@ -6,7 +6,7 @@ from system_controller.models.service import Service
 class ServiceRepository:
     def __init__(self, path: str | Path = "database/service.json"):
         self.path = Path(path)
-        self.services = dict[str, Service] = {}
+        self.services: dict[str, Service] = {}
         
         self._load()
         
@@ -23,7 +23,7 @@ class ServiceRepository:
         
         self.services = {
             name: Service(name=name, unit=unit)
-            for name, unit in data.items
+            for name, unit in data.items()
             if isinstance(name, str) and isinstance(unit, str)
         }
         
