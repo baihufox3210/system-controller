@@ -102,7 +102,7 @@ class Services(commands.GroupCog, group_name="service"):
 
         if status_info is not None:
             await interaction.followup.send(
-                f"📊 **服務 `{service}` 狀態：**\n"
+                f"**服務 `{service}` 狀態：**\n"
                 f"• Active State: `{status_info.active}`\n"
                 f"• Enabled State: `{status_info.enabled}`\n"
                 f"• Unit: `{status_info.service.unit}`"
@@ -141,7 +141,7 @@ class Services(commands.GroupCog, group_name="service"):
             await interaction.followup.send("目前尚未註冊任何服務。請使用 `/service add` 新增。")
             return
 
-        formatted_list = [f"• **{s.name}**: `{s.unit}`" for s in services]
+        formatted_list = [f"- {s.name}: `{s.unit}`" for s in services]
         await interaction.followup.send(f"**可管理服務清單：**\n" + "\n".join(formatted_list))
 
     # --- 管理維護指令 ---
@@ -165,7 +165,7 @@ class Services(commands.GroupCog, group_name="service"):
         success = self.system_service.remove(service)
 
         if success:
-            await interaction.followup.send(f"🗑️ 已成功移除服務：`{service}`")
+            await interaction.followup.send(f"已成功移除服務：`{service}`")
         else:
             await interaction.followup.send(f"移除失敗：找不到服務 `{service}`。")
 
